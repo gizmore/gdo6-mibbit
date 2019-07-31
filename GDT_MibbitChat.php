@@ -2,6 +2,7 @@
 namespace GDO\Mibbit;
 
 use GDO\Core\GDT_Template;
+use GDO\Net\GDT_Url;
 
 /**
  * A Mibbit chat panel.
@@ -25,8 +26,8 @@ final class GDT_MibbitChat extends GDT_Template
 	 */
 	public static function getMibbitURL(string $server, int $port, string $channel, bool $ssl, string $nickname)
 	{
-		return sprintf('http%s://embed.mibbit.com/?server=%s%%3A%s%d&channel=%s&noServerNotices=true&noServerMotd=true&nick=%s&forcePrompt=true',
-			($ssl ? 's' : ''),
+		return sprintf('%s://embed.mibbit.com/?server=%s%%3A%s%d&channel=%s&noServerNotices=true&noServerMotd=true&nick=%s&forcePrompt=true',
+			GDT_Url::protocol(),
 			$server,
 			($ssl ? '%2B' : ''),
 			$port,
