@@ -6,9 +6,9 @@ use GDO\DB\GDT_String;
 use GDO\Net\GDT_Hostname;
 use GDO\Net\GDT_Port;
 use GDO\DB\GDT_Checkbox;
-use GDO\UI\GDT_Bar;
-use GDO\Core\GDT_Template;
+use GDO\UI\GDT_Link;
 use GDO\DB\GDT_UInt;
+use GDO\UI\GDT_Page;
 
 /**
  * Add IRC chat to your website via Mibbit IRC proxy.
@@ -16,8 +16,8 @@ use GDO\DB\GDT_UInt;
  * @see GDT_MibbitChat
  * 
  * @author gizmore
- * @since 6.10
  * @version 6.10
+ * @since 6.10
  */
 final class Module_Mibbit extends GDO_Module
 {
@@ -35,7 +35,8 @@ final class Module_Mibbit extends GDO_Module
 			GDT_String::make('mibbit_channel')->utf8()->max(128)->pattern("/^[&#]\\S+$/D")->initial("#gdo6"), # could be an IRC dependency but meh
 			GDT_String::make('mibbit_nickname')->ascii()->initial(GWF_SITENAME)->max(32),
 			GDT_UInt::make('mibbit_nick_counter')->initial('1'),
-			GDT_Checkbox::make('mibbit_fullscreen')->initial('1'),
+		    GDT_Checkbox::make('mibbit_fullscreen')->initial('1'),
+		    GDT_Checkbox::make('mibbit_left_bar')->initial('1'),
 		);
 	}
 	
@@ -54,6 +55,18 @@ final class Module_Mibbit extends GDO_Module
 	/**
 	 * Add chat to left bar
 	 */
-	public function hookLeftBar(GDT_Bar $bar) { GDT_Template::php('Mibbit', 'bar.php', ['bar' => $bar]); }
+	public function onInitSidebar()
+	{
+// 	    if ($this->getConfigValue('mibbit_left_bar'))
+	    {
+	        $link = GDT_Link::make('link_mibbit')->href(href('Mibbit', 'Chat'));
+	        
+	        if ($this->getConfigValue('mibbit_fullscreen'))
+	        {
+	            $link->targetBlank();
+	        }
+	        GDT_Page::$INSTANCE->leftNav->addField($link);
+	    }
+	}
 	
 }
