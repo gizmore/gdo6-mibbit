@@ -48,14 +48,14 @@ final class GDT_MibbitChat extends GDT_Template
 	##############
 	### Render ###
 	##############
-	public function renderTemplate()
+	public function renderTemplate($f=null)
 	{
 		$this->templateModule = 'Mibbit';
 		$this->templatePath = 'page/mibbit.php';
 		$this->templateVars = array(
 			'mibbitURL' => $this->mibbitURL(),
 		);
-		return parent::renderTemplate();
+		return parent::renderTemplate($f);
 	}
 	
 	############
