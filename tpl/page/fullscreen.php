@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title><?=t('btn_mibbit').' '.sitename()?></title>
 <style type="text/css">
 body, html, iframe, .gdt-mibbit-chat {
 width: 100%;
