@@ -57,7 +57,7 @@ final class Module_Mibbit extends GDO_Module
 	 */
 	public function onInitSidebar()
 	{
-// 	    if ($this->getConfigValue('mibbit_left_bar'))
+	    if ($this->getConfigValue('mibbit_left_bar'))
 	    {
 	        $link = GDT_Link::make('link_mibbit')->href(href('Mibbit', 'Chat'));
 	        
