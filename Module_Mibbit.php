@@ -33,7 +33,7 @@ final class Module_Mibbit extends GDO_Module
 			GDT_Port::make('mibbit_port')->notNull()->initial('6667'),
 			GDT_Checkbox::make('mibbit_tls')->initial('0'),
 			GDT_String::make('mibbit_channel')->utf8()->max(128)->pattern("/^[&#]\\S+$/D")->initial("#gdo6"), # could be an IRC dependency but meh
-			GDT_String::make('mibbit_nickname')->ascii()->initial(GWF_SITENAME)->max(32),
+			GDT_String::make('mibbit_nickname')->ascii()->initial(GDO_SITENAME)->max(32),
 			GDT_UInt::make('mibbit_nick_counter')->initial('1'),
 		    GDT_Checkbox::make('mibbit_fullscreen')->initial('1'),
 		    GDT_Checkbox::make('mibbit_left_bar')->initial('1'),
